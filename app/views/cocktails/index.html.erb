@@ -1,0 +1,43 @@
+<nav class="navbar navbar-dark bg-dark">
+  <span class="navbar-brand mb-0 h1">Cocktails</span>
+</nav>
+
+
+<div class="container">
+  <div class="row">
+    <% @cocktails.each do |cocktail| %>
+    <div class="col-sm-12 col-md-3 mt-3">
+        <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              <% cocktail.ingredients.each do |ingredient| %>
+                <%= ingredient.name %>
+                <br>
+              <% end %>
+            </h6>
+          </div>
+        </div>
+      </div>
+    <% end %>
+   </div>
+   <div class="card mt-4 justify-content-center">
+    <div class="card-header">
+      New cocktail
+    </div>
+    <div class="card-body">
+      <!-- <h5 class="card-title">Special title treatment</h5> -->
+      <%= simple_form_for [@cocktail] do |f| %>
+      <p class="card-text">
+        <%= f.input :name %>
+      </p>
+      <%= f.submit "Create cocktail", class: "btn btn-primary"%>
+      <% end %>
+    </div>
+</div>
+</div>
+
+
+
+
+
