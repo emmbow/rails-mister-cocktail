@@ -5,28 +5,30 @@
 
 <div class="container">
   <div class="d-flex justify-content-center mb-2">
-  <%= cl_image_tag @cocktail.photo.key, height: 300, crop: :fill %>
-  </div>
-  <div class="row">
-    <% @cocktail.doses.each do |dose| %>
-      <div class="col-sm-12 col-md-12">
-        <div class="card">
-          <div class="card-body">
-            <p class="card-title"> Ingredient: <%= dose.ingredient.name %></p>
-            <p class="card-text">Quantity: <%= dose.description %></p>
-            <button type="button" class="btn btn-light">
-                <%= link_to "Delete", dose_path(dose),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %>
-            </button>
-
-            <!-- <p class="card-text"><%= dose.description %></p> -->
-
-          </div>
-        </div>
-      </div>
+    <% if @cocktail.photo.attached? %>
+      <%= cl_image_tag @cocktail.photo.key, height: 300, crop: :fill %>
     <% end %>
-  </div>
+        </div>
+        <div class="row">
+          <% @cocktail.doses.each do |dose| %>
+            <div class="col-sm-12 col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title"> Ingredient: <%= dose.ingredient.name %></p>
+                  <p class="card-text">Quantity: <%= dose.description %></p>
+                  <button type="button" class="btn btn-light">
+                      <%= link_to "Delete", dose_path(dose),
+                        method: :delete,
+                        data: { confirm: "Are you sure?" } %>
+                  </button>
+
+                  <!-- <p class="card-text"><%= dose.description %></p> -->
+
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
   <br>
   <h5>Add a new ingredient and description</h5>
   <%= simple_form_for ([@cocktail, @dose]) do |f| %>
