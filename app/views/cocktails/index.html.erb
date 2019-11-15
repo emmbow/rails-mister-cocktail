@@ -11,16 +11,17 @@
         <div class="card shadow-sm mb-5 bg-white rounded">
           <div class="card-body">
             <% if cocktail.photo.attached? %>
-              <%= cl_image_tag cocktail.photo.key, crop: :fill, class: "card-img-top mb-2" %>
-              <h5 class="card-title"><%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
-              <h6 class="card-subtitle mb-2 text-muted">
-                <% cocktail.ingredients.each do |ingredient| %>
-                  <%= ingredient.name %>
-                  <br>
-                <% end %>
+              <h5 class="card-title text-center"><%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
+              <%= cl_image_tag cocktail.photo.key, crop: :fill, class: "card-img-top mb-4" %>
+                <h6 class="card-subtitle text-center mb-2 text-muted">
+                  <% cocktail.ingredients.each do |ingredient| %>
+                    <%= ingredient.name %>
+                    <br>
+                  <% end %>
+                </h6>
             <% else %>
-              <h5 class="card-title"><%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
-              <h6 class="card-subtitle mb-2 text-muted">
+              <h5 class="card-title text-center"><%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
+              <h6 class="card-subtitle text-center mb-2 text-muted">
                 <% cocktail.ingredients.each do |ingredient| %>
                   <%= ingredient.name %>
                   <br>
@@ -32,19 +33,21 @@
       </div>
     <% end %>
    </div>
-   <div class="card mt-1 mb-5 col-xs-12 col-sm-6 col-md-3 mt-3">
-    <div class="card-header">
-      New cocktail
-    </div>
-    <div class="card-body m-0">
-      <!-- <h5 class="card-title">Special title treatment</h5> -->
-      <%= simple_form_for [@cocktail] do |f| %>
-      <p class="card-text">
-        <%= f.input :name %>
-        <%= f.input :photo, as: :file %>
-      </p>
-      <%= f.submit "Create cocktail", class: "btn btn-dark"%>
-      <% end %>
+   <div class="card col-xs-12 col-sm-6 col-md-3 mt-3">
+    <div class="form-card">
+      <div class="card-header">
+        New cocktail
+      </div>
+      <div class="card-body m-0">
+        <!-- <h5 class="card-title">Special title treatment</h5> -->
+        <%= simple_form_for [@cocktail] do |f| %>
+        <p class="card-text">
+          <%= f.input :name %>
+          <%= f.input :photo, as: :file %>
+        </p>
+        <%= f.submit "Create cocktail", class: "btn btn-dark"%>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
