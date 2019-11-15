@@ -6,8 +6,9 @@
 <div class="container">
   <div class="row">
     <% @cocktails.each do |cocktail| %>
-    <div class="col-sm-12 col-md-3 mt-3">
-        <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+    <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
+        <div class="card shadow-sm mb-5 bg-white rounded">
+          <img class="card-img-top" src="https://cdn.liquor.com/wp-content/uploads/2018/10/19111600/drunk-uncle-720x720-recipe.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title"><%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
             <h6 class="card-subtitle mb-2 text-muted">
