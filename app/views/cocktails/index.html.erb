@@ -32,11 +32,11 @@
       </div>
     <% end %>
    </div>
-   <div class="card mt-1 mb-5 justify-content-center">
+   <div class="card mt-1 mb-5 col-xs-12 col-sm-6 col-md-3 mt-3">
     <div class="card-header">
       New cocktail
     </div>
-    <div class="card-body">
+    <div class="card-body m-0">
       <!-- <h5 class="card-title">Special title treatment</h5> -->
       <%= simple_form_for [@cocktail] do |f| %>
       <p class="card-text">
@@ -46,7 +46,7 @@
       <%= f.submit "Create cocktail", class: "btn btn-dark"%>
       <% end %>
     </div>
-</div>
+  </div>
 </div>
 
 
