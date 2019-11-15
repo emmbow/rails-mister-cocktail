@@ -3,26 +3,36 @@
 </nav>
 
 
+
 <div class="container">
   <div class="row">
     <% @cocktails.each do |cocktail| %>
     <div class="col-xs-12 col-sm-6 col-md-3 mt-3">
         <div class="card shadow-sm mb-5 bg-white rounded">
-          <img class="card-img-top" src="https://cdn.liquor.com/wp-content/uploads/2018/10/19111600/drunk-uncle-720x720-recipe.jpg" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title"><%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
-            <h6 class="card-subtitle mb-2 text-muted">
-              <% cocktail.ingredients.each do |ingredient| %>
-                <%= ingredient.name %>
-                <br>
-              <% end %>
-            </h6>
+            <% if cocktail.photo.attached? %>
+              <%= cl_image_tag cocktail.photo.key, crop: :fill, class: "card-img-top mb-2" %>
+              <h5 class="card-title"><%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                <% cocktail.ingredients.each do |ingredient| %>
+                  <%= ingredient.name %>
+                  <br>
+                <% end %>
+            <% else %>
+              <h5 class="card-title"><%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                <% cocktail.ingredients.each do |ingredient| %>
+                  <%= ingredient.name %>
+                  <br>
+                <% end %>
+              </h6>
+            <% end %>
           </div>
         </div>
       </div>
     <% end %>
    </div>
-   <div class="card mt-4 justify-content-center">
+   <div class="card mt-1 mb-5 justify-content-center">
     <div class="card-header">
       New cocktail
     </div>
@@ -31,12 +41,14 @@
       <%= simple_form_for [@cocktail] do |f| %>
       <p class="card-text">
         <%= f.input :name %>
+        <%= f.input :photo, as: :file %>
       </p>
-      <%= f.submit "Create cocktail", class: "btn btn-primary"%>
+      <%= f.submit "Create cocktail", class: "btn btn-dark"%>
       <% end %>
     </div>
 </div>
 </div>
+
 
 
 

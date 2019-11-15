@@ -169,6 +169,6 @@ ingredients.each do |ingredient|
   Ingredient.create(name: ingredient)
 end
 
-Cocktail.create(name: "Martini")
+# Cocktail.create(name: "Martini")
 
 puts "done"
